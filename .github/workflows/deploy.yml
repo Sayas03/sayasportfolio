@@ -1,0 +1,39 @@
+# Deploys this website to the AWS server every time you push to the main branch.
+# Needs 4 repository secrets: SSH_HOST, SSH_USER, SSH_KEY, WEBROOT (see README.md).
+name: Deploy website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:   # lets you re-run a deploy by hand from the Actions tab
+
+concurrency: deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Upload files to the server
+        run: |
+          rsync -az --delete --exclude '.git*' --exclude 'README.md' \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            ./ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/site-deploy/"
+
+      - name: Publish to the web folder
+        run: |
+          ssh -i ~/.ssh/deploy_key "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "
+            sudo rsync -a --exclude '.well-known' ~/site-deploy/ '${{ secrets.WEBROOT }}/' &&
+            sudo chown -R www-data:www-data '${{ secrets.WEBROOT }}' &&
+            sudo find '${{ secrets.WEBROOT }}' -type d -exec chmod 755 {} + &&
+            sudo find '${{ secrets.WEBROOT }}' -type f -exec chmod 644 {} +
+          "
