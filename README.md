@@ -30,5 +30,6 @@ The key file `2ad30380cc25ef856a8fbc75afe46bb1.txt` must stay in the site root.
 - `/web-design-malappuram/`
 - `/app-development-kerala/`
 - `/ai-video-creation-kerala/`
+- `/hire-web-developer-india/`
 
 When adding a page, also add it to `sitemap.xml`.
