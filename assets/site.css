@@ -3,6 +3,7 @@
   --ink:#08201A; --ink-2:#0F2E26; --paper:#EEF1EA; --gold:#E9B13A; --mist:#9DB5AB; --line:rgba(238,241,234,.14);
 }
 *{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 html{background:var(--ink)}
 body{margin:0;background:var(--ink);color:var(--paper);font:18px/1.65 "Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit}
@@ -13,7 +14,7 @@ img{display:block;max-width:100%}
 .kasavu{height:10px;background:linear-gradient(var(--gold),var(--gold)) 0 0/100% 4px no-repeat,linear-gradient(var(--gold),var(--gold)) 0 7px/100% 2px no-repeat}
 
 /* header */
-header{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--ink) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:40;background:rgba(8,32,26,.92);background:color-mix(in srgb,var(--ink) 88%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 header .wrap{display:flex;justify-content:space-between;align-items:center;height:76px}
 .brand{font:600 17px Unbounded,sans-serif;text-decoration:none}
 header nav{display:flex;gap:28px;align-items:center}
@@ -88,6 +89,7 @@ h2{font:800 clamp(30px,4vw,52px)/1.05 Unbounded,sans-serif;margin:0 0 40px;lette
 .faq details:last-child{border-bottom:1px solid var(--line)}
 .faq summary{cursor:pointer;list-style:none;font:600 20px/1.35 "Hanken Grotesk",sans-serif;padding:18px 40px 18px 0;position:relative}
 .faq summary::-webkit-details-marker{display:none}
+.faq summary::marker{content:""}
 .faq summary::after{content:"+";position:absolute;right:4px;top:12px;font:400 30px/1 "Hanken Grotesk",sans-serif;color:var(--gold);transition:transform .3s}
 .faq details[open] summary::after{transform:rotate(45deg)}
 .faq details p{margin:0 0 20px;color:#C9D6D0;max-width:44em}

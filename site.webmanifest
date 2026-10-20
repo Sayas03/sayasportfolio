@@ -1,0 +1,21 @@
+{
+ "name": "Sayas V V — Freelance Web & App Developer",
+ "short_name": "Sayas V V",
+ "start_url": "/",
+ "display": "standalone",
+ "background_color": "#08201A",
+ "theme_color": "#08201A",
+ "lang": "en-IN",
+ "icons": [
+  {
+   "src": "/apple-touch-icon.png",
+   "sizes": "180x180",
+   "type": "image/png"
+  },
+  {
+   "src": "/favicon.svg",
+   "sizes": "any",
+   "type": "image/svg+xml"
+  }
+ ]
+}
